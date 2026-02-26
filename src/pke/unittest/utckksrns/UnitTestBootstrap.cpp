@@ -207,9 +207,11 @@ static std::vector<TEST_CASE_UTCKKSRNS_BOOT> testCases = {
     { BOOTSTRAP_EDGE, "18", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT,      SPARSE_TERNARY, DFLT, FMODSIZE, HEStd_NotSet, HYBRID, FLEXIBLEAUTOEXT, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 2, 2 },  { 0, 0 }, RDIM/4 },
     { BOOTSTRAP_EDGE, "19", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT,     UNIFORM_TERNARY, DFLT, FMODSIZE, HEStd_NotSet, HYBRID, FLEXIBLEAUTOEXT, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 2, 2 },  { 0, 0 }, RDIM/4 },
     { BOOTSTRAP_EDGE, "20", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT,      SPARSE_TERNARY, DFLT, FMODSIZE, HEStd_NotSet, HYBRID, FLEXIBLEAUTOEXT, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, COMPLEX},   { 2, 2 },  { 0, 0 }, RDIM/4 },
+    { BOOTSTRAP_EDGE, "21", {CKKSRNS_SCHEME, 4096, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT,     UNIFORM_TERNARY, DFLT, FMODSIZE, HEStd_NotSet, HYBRID,    FLEXIBLEAUTO, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 2, 2 },  { 0, 0 }, 2048 },
+    { BOOTSTRAP_EDGE, "22", {CKKSRNS_SCHEME, 4096, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT,     UNIFORM_TERNARY, DFLT, FMODSIZE, HEStd_NotSet, HYBRID,    FLEXIBLEAUTO, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 2, 2 },  { 0, 0 }, 32 },
 #endif
-    { BOOTSTRAP_EDGE, "21", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT, SPARSE_ENCAPSULATED, DFLT, FMODSIZE, HEStd_NotSet, HYBRID,       FIXEDAUTO, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 1, 1 },  { 0, 0 }, RDIM/4 },
-    { BOOTSTRAP_EDGE, "22", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT, SPARSE_ENCAPSULATED, DFLT, FMODSIZE, HEStd_NotSet, HYBRID,       FIXEDAUTO, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 2, 2 },  { 0, 0 }, RDIM/4 },
+    { BOOTSTRAP_EDGE, "23", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT, SPARSE_ENCAPSULATED, DFLT, FMODSIZE, HEStd_NotSet, HYBRID,       FIXEDAUTO, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 1, 1 },  { 0, 0 }, RDIM/4 },
+    { BOOTSTRAP_EDGE, "24", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT, SPARSE_ENCAPSULATED, DFLT, FMODSIZE, HEStd_NotSet, HYBRID,       FIXEDAUTO, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 2, 2 },  { 0, 0 }, RDIM/4 },
     // ==========================================
     // TestType,       Descr,          Scheme, RDim,  MultDepth, SModSize, DSize, BSize, SecKeyDist, MaxRelinSkDeg, FModSize,       SecLvl, KSTech,        ScalTech,      LDigits, PtMod,StdDev, EvalAddCt, KSCt, MultTech, EncTech, PREMode, MultipartyMode, decryptionNoiseMode, ExecutionMode, NoiseEstimate, RegisterWordSize, CompositeDegree, CKKSDataType, LvlBudget, Dim1,       Slots
     { BOOTSTRAP_SPARSE, "01", {CKKSRNS_SCHEME, RDIM, MULT_DEPTH, SMODSIZE,  DFLT,  DFLT,     UNIFORM_TERNARY, DFLT, FMODSIZE, HEStd_NotSet, HYBRID,       FIXEDAUTO, NUM_LRG_DIGS, DFLT,  DFLT,   DFLT,      DFLT, DFLT,     DFLT,    DFLT,   DFLT,  DFLT,   DFLT,      DFLT, DFLT, DFLT, REAL},   { 1, 1 },  { 8, 8 }, 8 },
@@ -392,11 +394,10 @@ class UTCKKSRNS_BOOT : public ::testing::TestWithParam<TEST_CASE_UTCKKSRNS_BOOT>
         // using the infinity norm
         double maxError = 0.;
         for (size_t i = 0; i < result.size(); ++i) {
-            double error = std::abs(result[i].real() - expectedResult[i].real());
+            double error = std::abs(result[i] - expectedResult[i]);
             if (maxError < error)
                 maxError = error;
         }
-
         return std::abs(std::log2(maxError));
     }
 
@@ -407,11 +408,12 @@ protected:
         CryptoContextFactory<DCRTPoly>::ReleaseAllContexts();
     }
 
-    void UnitTest_Bootstrap(const TEST_CASE_UTCKKSRNS_BOOT& testData, const std::string& failmsg = std::string()) {
+    void UnitTest_Bootstrap(const TEST_CASE_UTCKKSRNS_BOOT& testData, const bool StCFlag,
+                            const std::string& failmsg = std::string()) {
         try {
             CryptoContext<Element> cc(UnitTestGenerateContext(testData.params));
 
-            cc->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots);
+            cc->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots, 0, true, StCFlag);
 
             auto keyPair = cc->KeyGen();
             cc->EvalBootstrapKeyGen(keyPair.secretKey, testData.slots);
@@ -431,7 +433,8 @@ protected:
 
             size_t encodedLength = input.size();
 
-            Plaintext plaintext1 = cc->MakeCKKSPackedPlaintext(input, 1, MULT_DEPTH - 1, nullptr, testData.slots);
+            Plaintext plaintext1 = cc->MakeCKKSPackedPlaintext(
+                input, 1, MULT_DEPTH - 1 - testData.levelBudget[1] * StCFlag, nullptr, testData.slots);
             auto ciphertext1     = cc->Encrypt(keyPair.publicKey, plaintext1);
             auto ciphertextAfter = cc->EvalBootstrap(ciphertext1);
 
@@ -440,7 +443,8 @@ protected:
             result->SetLength(encodedLength);
             plaintext1->SetLength(encodedLength);
             checkEquality(result->GetCKKSPackedValue(), plaintext1->GetCKKSPackedValue(), eps,
-                          failmsg + " Bootstrapping for fully packed ciphertexts fails");
+                          failmsg + " Bootstrapping for fully packed ciphertexts fails for " +
+                              ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
 
             int32_t rotIndex = (testData.slots < 8) ? 0 : 6;
             if (cc->GetCKKSDataType() == REAL) {
@@ -455,7 +459,8 @@ protected:
             cc->Decrypt(keyPair.secretKey, ciphertext6, &result6);
             result6->SetLength(encodedLength);
             checkEquality(result6->GetCKKSPackedValue(), temp6, eps,
-                          failmsg + " EvalAtIndex after Bootstrapping for fully packed ciphertexts fails");
+                          failmsg + " EvalAtIndex after Bootstrapping for fully packed ciphertexts fails for " +
+                              ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
         }
         catch (std::exception& e) {
             std::cerr << "Exception thrown from " << __func__ << "(): " << e.what() << std::endl;
@@ -527,8 +532,8 @@ protected:
             ciphertext   = cc->Encrypt(keyPair.publicKey, plaintext_a);
             firstCurrent = ciphertext->GetElements()[0];
             // Find the automorphism index that corresponds to rotation index index.
-            usint autoIndex = FindAutomorphismIndex2nComplex(1, 4096);
-            std::vector<usint> map(4096 / 2);
+            uint32_t autoIndex = FindAutomorphismIndex2nComplex(1, 4096);
+            std::vector<uint32_t> map(4096 / 2);
             PrecomputeAutoMap(4096 / 2, autoIndex, &map);
             firstCurrent = firstCurrent.AutomorphismTransform(autoIndex, map);
             digits       = cc->EvalFastRotationPrecompute(ciphertext);
@@ -553,12 +558,14 @@ protected:
         }
     }
 
-    void UnitTest_Bootstrap_Iterative(const TEST_CASE_UTCKKSRNS_BOOT& testData,
+    void UnitTest_Bootstrap_Iterative(const TEST_CASE_UTCKKSRNS_BOOT& testData, const bool StCFlag,
                                       const std::string& failmsg = std::string()) {
         try {
             CryptoContext<Element> cc(UnitTestGenerateContext(testData.params));
 
-            cc->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots);
+            // For small ring dimensions like the ones tested, the correction factor for StC-first should be small, e.g., 10.
+            cc->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots, (StCFlag) ? 10 : 0, true,
+                                   StCFlag);
 
             auto keyPair = cc->KeyGen();
             cc->EvalBootstrapKeyGen(keyPair.secretKey, testData.slots);
@@ -569,9 +576,11 @@ protected:
             auto input(Fill({0.111111 + 0.999999i, 0.222222 - 0.888888i, 0.333333 + 0.777777i, 0.444444 - 0.666666i,
                              0.555555 + 0.555555i, 0.666666 - 0.444444i, 0.777777 + 0.333333i, 0.888888 - 0.222222i},
                             testData.slots));
+
             size_t encodedLength = input.size();
 
-            Plaintext plaintext  = cc->MakeCKKSPackedPlaintext(input, 1, MULT_DEPTH - 1, nullptr, testData.slots);
+            Plaintext plaintext = cc->MakeCKKSPackedPlaintext(
+                input, 1, MULT_DEPTH - 1 - testData.levelBudget[1] * StCFlag, nullptr, testData.slots);
             auto ciphertext      = cc->Encrypt(keyPair.publicKey, plaintext);
             auto ciphertextAfter = cc->EvalBootstrap(ciphertext);
 
@@ -594,11 +603,17 @@ protected:
             result->SetLength(encodedLength);
             auto actualResult = resultTwoIterations->GetCKKSPackedValue();
             checkEquality(actualResult, plaintext->GetCKKSPackedValue(), eps,
-                          failmsg + " Bootstrapping with " + std::to_string(numIterations) + " iterations failed");
+                          failmsg + " Bootstrapping with " + std::to_string(numIterations) + " iterations failed for " +
+                              ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
             double precisionMultipleIterations =
                 CalculateApproximationError(actualResult, plaintext->GetCKKSPackedValue());
 
-            EXPECT_GE(precisionMultipleIterations + precisionBuffer, numIterations * precision);
+            // std::cerr << "Initial precision = " << precision + precisionBuffer
+            //           << ", META-BTS used precision: " << precision
+            //           << ", precisionMultipleIterations = " << precisionMultipleIterations << std::endl;
+
+            double validPrecision = numIterations * precision;
+            EXPECT_GE(precisionMultipleIterations + precisionBuffer, validPrecision);
 
             if (cc->GetCKKSDataType() == REAL) {
                 for (size_t i = 0; i < testData.slots; i++)
@@ -612,7 +627,8 @@ protected:
             cc->Decrypt(keyPair.secretKey, ciphertext6, &result6);
             result6->SetLength(encodedLength);
             checkEquality(result6->GetCKKSPackedValue(), temp6, eps,
-                          failmsg + " EvalAtIndex after Bootstrapping for ciphertexts fails");
+                          failmsg + " EvalAtIndex after Bootstrapping for ciphertexts fails for " +
+                              ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
         }
         catch (std::exception& e) {
             std::cerr << "Exception thrown from " << __func__ << "(): " << e.what() << std::endl;
@@ -624,7 +640,7 @@ protected:
         }
     }
 
-    void UnitTest_Bootstrap_NumTowers(const TEST_CASE_UTCKKSRNS_BOOT& testData,
+    void UnitTest_Bootstrap_NumTowers(const TEST_CASE_UTCKKSRNS_BOOT& testData, const bool StCFlag,
                                       const std::string& failmsg = std::string()) {
         // This test checks to make sure that we return the original ciphertext if we
         // start with more towers than the number of towers we would end up with by
@@ -632,7 +648,7 @@ protected:
         try {
             CryptoContext<Element> cc(UnitTestGenerateContext(testData.params));
 
-            cc->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots);
+            cc->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots, 0, true, StCFlag);
 
             auto keyPair = cc->KeyGen();
             cc->EvalBootstrapKeyGen(keyPair.secretKey, testData.slots);
@@ -657,7 +673,9 @@ protected:
             cc->Decrypt(keyPair.secretKey, ciphertextAfter, &result);
             result->SetLength(encodedLength);
             auto actualResult = result->GetCKKSPackedValue();
-            checkEquality(actualResult, plaintext->GetCKKSPackedValue(), eps, failmsg + " Bootstrapping failed");
+            checkEquality(
+                actualResult, plaintext->GetCKKSPackedValue(), eps,
+                failmsg + " Bootstrapping failed for " + ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
 
             auto ciphertextTwoIterations             = cc->EvalBootstrap(ciphertext);
             auto bootstrappingNumTowersTwoIterations = ciphertextTwoIterations->GetElements()[0].GetNumOfElements();
@@ -669,7 +687,8 @@ protected:
             result->SetLength(encodedLength);
             auto actualResult2 = result2->GetCKKSPackedValue();
             checkEquality(actualResult2, plaintext->GetCKKSPackedValue(), eps,
-                          failmsg + " Bootstrapping with two iterations failed");
+                          failmsg + " Bootstrapping with two iterations failed for " +
+                              ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
         }
         catch (std::exception& e) {
             std::cerr << "Exception thrown from " << __func__ << "(): " << e.what() << std::endl;
@@ -681,7 +700,7 @@ protected:
         }
     }
 
-    void UnitTest_Bootstrap_Serialize(const TEST_CASE_UTCKKSRNS_BOOT& testData,
+    void UnitTest_Bootstrap_Serialize(const TEST_CASE_UTCKKSRNS_BOOT& testData, const bool StCFlag,
                                       const std::string& failmsg = std::string()) {
         try {
             CryptoContextImpl<DCRTPoly>::ClearEvalMultKeys();
@@ -690,8 +709,8 @@ protected:
             CryptoContextFactory<DCRTPoly>::ReleaseAllContexts();
 
             CryptoContext<Element> ccInit(UnitTestGenerateContext(testData.params));
-            ccInit->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots, 0, false);
-            ccInit->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots / 2, 0, false);
+            ccInit->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots, 0, false, StCFlag);
+            ccInit->EvalBootstrapSetup(testData.levelBudget, testData.dim1, testData.slots / 2, 0, false, StCFlag);
 
             auto keyPairInit = ccInit->KeyGen();
             ccInit->EvalMultKeyGen(keyPairInit.secretKey);
@@ -739,7 +758,8 @@ protected:
                             testData.slots));
             size_t encodedLength = input.size();
 
-            Plaintext plaintext1  = cc->MakeCKKSPackedPlaintext(input, 1, MULT_DEPTH - 1, nullptr, testData.slots);
+            Plaintext plaintext1 = cc->MakeCKKSPackedPlaintext(
+                input, 1, MULT_DEPTH - 1 - testData.levelBudget[1] * StCFlag, nullptr, testData.slots);
             auto ciphertext1      = cc->Encrypt(keyPair.publicKey, plaintext1);
             auto ciphertext1After = cc->EvalBootstrap(ciphertext1);
 
@@ -748,14 +768,16 @@ protected:
             result->SetLength(encodedLength);
             plaintext1->SetLength(encodedLength);
             checkEquality(result->GetCKKSPackedValue(), plaintext1->GetCKKSPackedValue(), eps,
-                          failmsg + " Bootstrapping for fully packed ciphertexts fails");
+                          failmsg + " Bootstrapping for fully packed ciphertexts fails for " +
+                              ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
 
             //====================================================================================================
             auto input2(Fill({0.111111 + 0.999999i, 0.222222 - 0.888888i, 0.333333 + 0.777777i, 0.444444 - 0.666666i},
                              testData.slots / 2));
             size_t encodedLength2 = input2.size();
 
-            Plaintext plaintext2  = cc->MakeCKKSPackedPlaintext(input2, 1, MULT_DEPTH - 1, nullptr, testData.slots / 2);
+            Plaintext plaintext2 = cc->MakeCKKSPackedPlaintext(
+                input2, 1, MULT_DEPTH - 1 - testData.levelBudget[1] * StCFlag, nullptr, testData.slots / 2);
             auto ciphertext2      = cc->Encrypt(keyPair.publicKey, plaintext2);
             auto ciphertext2After = cc->EvalBootstrap(ciphertext2);
 
@@ -763,7 +785,8 @@ protected:
             result->SetLength(encodedLength2);
             plaintext2->SetLength(encodedLength2);
             checkEquality(result->GetCKKSPackedValue(), plaintext2->GetCKKSPackedValue(), eps,
-                          failmsg + " Bootstrapping for fully packed ciphertexts fails");
+                          failmsg + " Bootstrapping for fully packed ciphertexts fails for " +
+                              ((StCFlag) ? "StC-first" : "ModRaise-first") + " version.");
             //====================================================================================================
             EXPECT_TRUE(1 == 1) << failmsg;
         }
@@ -813,7 +836,7 @@ protected:
             result->SetLength(8);
 
             checkEquality(ptxt->GetCKKSPackedValue(), result->GetCKKSPackedValue(), eps,
-                          failmsg + " input/output missmatch");
+                          failmsg + " input/output mismatch");
         }
         catch (std::exception& e) {
             std::cerr << "Exception thrown from " << __func__ << "(): " << e.what() << std::endl;
@@ -834,19 +857,23 @@ TEST_P(UTCKKSRNS_BOOT, CKKSRNS) {
         case BOOTSTRAP_FULL:
         case BOOTSTRAP_EDGE:
         case BOOTSTRAP_SPARSE:
-            UnitTest_Bootstrap(test, test.buildTestName());
+            UnitTest_Bootstrap(test, false, test.buildTestName());
+            UnitTest_Bootstrap(test, true, test.buildTestName());
             break;
         case BOOTSTRAP_KEY_SWITCH:
             UnitTest_Bootstrap_KeySwitching(test, test.buildTestName());
             break;
         case BOOTSTRAP_ITERATIVE:
-            UnitTest_Bootstrap_Iterative(test, test.buildTestName());
+            UnitTest_Bootstrap_Iterative(test, false, test.buildTestName());
+            UnitTest_Bootstrap_Iterative(test, true, test.buildTestName());
             break;
         case BOOTSTRAP_NUM_TOWERS:
-            UnitTest_Bootstrap_NumTowers(test, test.buildTestName());
+            UnitTest_Bootstrap_NumTowers(test, false, test.buildTestName());
+            UnitTest_Bootstrap_NumTowers(test, true, test.buildTestName());
             break;
         case BOOTSTRAP_SERIALIZE:
-            UnitTest_Bootstrap_Serialize(test, test.buildTestName());
+            UnitTest_Bootstrap_Serialize(test, false, test.buildTestName());
+            UnitTest_Bootstrap_Serialize(test, true, test.buildTestName());
             break;
         case BOOTSTRAP_SPARSE_ENCAPSULATED:
             UnitTest_BootstrapSE(test, test.buildTestName());

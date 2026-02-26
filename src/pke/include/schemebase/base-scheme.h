@@ -177,7 +177,7 @@ public:
 
     bool ParamsGenCKKSRNS(std::shared_ptr<CryptoParametersBase<Element>> cryptoParams, uint32_t cyclOrder,
                           uint32_t numPrimes, uint32_t scalingModSize, uint32_t firstModSize, uint32_t numPartQ,
-                          COMPRESSION_LEVEL mPIntBootCiphertextCompressionLevel) const {
+                          CompressionLevel mPIntBootCiphertextCompressionLevel) const {
         if (!m_ParamsGen)
             OPENFHE_THROW("m_ParamsGen is nullptr");
         return m_ParamsGen->ParamsGenCKKSRNSInternal(cryptoParams, cyclOrder, numPrimes, scalingModSize, firstModSize,
@@ -643,10 +643,6 @@ public:
     virtual std::shared_ptr<std::map<uint32_t, EvalKey<Element>>> EvalAutomorphismKeyGen(
         const PrivateKey<Element> privateKey, const std::vector<uint32_t>& indexList) const;
 
-    virtual std::shared_ptr<std::map<uint32_t, EvalKey<Element>>> EvalAutomorphismKeyGen(
-        const PublicKey<Element> publicKey, const PrivateKey<Element> privateKey,
-        const std::vector<uint32_t>& indexList) const;
-
     virtual Ciphertext<Element> EvalAutomorphism(ConstCiphertext<Element>& ciphertext, uint32_t i,
                                                  const std::map<uint32_t, EvalKey<Element>>& evalKeyMap,
                                                  CALLER_INFO_ARGS_HDR) const {
@@ -717,8 +713,7 @@ public:
     }
 
     virtual std::shared_ptr<std::map<uint32_t, EvalKey<Element>>> EvalAtIndexKeyGen(
-        const PublicKey<Element> publicKey, const PrivateKey<Element> privateKey,
-        const std::vector<int32_t>& indexList) const;
+        const PrivateKey<Element> privateKey, const std::vector<int32_t>& indexList) const;
 
     virtual Ciphertext<Element> EvalAtIndex(ConstCiphertext<Element>& ciphertext, uint32_t i,
                                             const std::map<uint32_t, EvalKey<Element>>& evalKeyMap) const {
@@ -947,7 +942,7 @@ public:
     /////////////////////////////////////
 
     virtual std::shared_ptr<std::map<uint32_t, EvalKey<Element>>> EvalSumKeyGen(
-        const PrivateKey<Element> privateKey, const PublicKey<Element> publicKey) const;
+        const PrivateKey<Element> privateKey) const;
 
     virtual std::shared_ptr<std::map<uint32_t, EvalKey<Element>>> EvalSumRowsKeyGen(
         const PrivateKey<Element> privateKey, uint32_t rowSize, uint32_t subringDim,
@@ -1115,6 +1110,12 @@ public:
         return m_Multiparty->IntMPBootRandomElementGen(cryptoParameters, publicKey);
     }
 
+    Ciphertext<Element> IntMPBootRandomElementGen(std::shared_ptr<CryptoParametersCKKSRNS> cryptoParameters,
+                                                  ConstCiphertext<Element>& ciphertext) const {
+        VerifyMultipartyEnabled(__func__);
+        return m_Multiparty->IntMPBootRandomElementGen(cryptoParameters, ciphertext);
+    }
+
     std::vector<Ciphertext<Element>> IntMPBootDecrypt(const PrivateKey<Element> privateKey,
                                                       ConstCiphertext<Element> ciphertext,
                                                       ConstCiphertext<Element> a) const {
@@ -1141,9 +1142,9 @@ public:
 
     void EvalBootstrapSetup(const CryptoContextImpl<Element>& cc, const std::vector<uint32_t>& levelBudget = {5, 4},
                             const std::vector<uint32_t>& dim1 = {0, 0}, uint32_t slots = 0,
-                            uint32_t correctionFactor = 0, bool precompute = true) {
+                            uint32_t correctionFactor = 0, bool precompute = true, bool BTSlotsEncoding = false) {
         VerifyFHEEnabled(__func__);
-        m_FHE->EvalBootstrapSetup(cc, levelBudget, dim1, slots, correctionFactor, precompute);
+        m_FHE->EvalBootstrapSetup(cc, levelBudget, dim1, slots, correctionFactor, precompute, BTSlotsEncoding);
     }
 
     std::shared_ptr<std::map<uint32_t, EvalKey<Element>>> EvalBootstrapKeyGen(const PrivateKey<Element> privateKey,
@@ -1161,6 +1162,12 @@ public:
                                       uint32_t precision = 0) const {
         VerifyFHEEnabled(__func__);
         return m_FHE->EvalBootstrap(ciphertext, numIterations, precision);
+    }
+
+    Ciphertext<Element> EvalBootstrapStCFirst(ConstCiphertext<Element>& ciphertext, uint32_t numIterations = 1,
+                                              uint32_t precision = 0) const {
+        VerifyFHEEnabled(__func__);
+        return m_FHE->EvalBootstrapStCFirst(ciphertext, numIterations, precision);
     }
 
     template <typename VectorDataType>
@@ -1228,6 +1235,16 @@ public:
                                               size_t precomp = 0) {
         VerifyFHEEnabled(__func__);
         return m_FHE->EvalHermiteTrigSeries(ciphertext, coefficientsCheb, a, b, coefficientsHerm, precomp);
+    }
+
+    uint32_t GetCKKSBootCorrectionFactor() {
+        VerifyFHEEnabled(__func__);
+        return m_FHE->GetCKKSBootCorrectionFactor();
+    }
+
+    void SetCKKSBootCorrectionFactor(uint32_t cf) {
+        VerifyFHEEnabled(__func__);
+        return m_FHE->SetCKKSBootCorrectionFactor(cf);
     }
 
     // SCHEMESWITCHING methods

@@ -32,12 +32,12 @@
 #ifndef _RGSW_FHE_H_
 #define _RGSW_FHE_H_
 
-#include "rlwe-ciphertext.h"
 #include "rgsw-acckey.h"
 #include "rgsw-cryptoparameters.h"
+#include "rlwe-ciphertext.h"
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 namespace lbcrypto {
 
@@ -59,7 +59,7 @@ public:
    */
     virtual RingGSWACCKey KeyGenAcc(const std::shared_ptr<RingGSWCryptoParams>& params, const NativePoly& skNTT,
                                     ConstLWEPrivateKey& LWEsk) const {
-        OPENFHE_THROW("KeyGenACC operation not supported");
+        OPENFHE_THROW("Operation not supported");
     }
 
     /**
@@ -72,7 +72,7 @@ public:
    */
     virtual void EvalAcc(const std::shared_ptr<RingGSWCryptoParams>& params, ConstRingGSWACCKey& ek,
                          RLWECiphertext& acc, const NativeVector& a) const {
-        OPENFHE_THROW("ACC operation not supported");
+        OPENFHE_THROW("Operation not supported");
     }
 
     /**
@@ -98,6 +98,7 @@ public:
     void SignedDigitDecompose(const std::shared_ptr<RingGSWCryptoParams>& params, const NativePoly& input,
                               std::vector<NativePoly>& output) const;
 };
+
 }  // namespace lbcrypto
 
 #endif
