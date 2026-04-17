@@ -161,6 +161,29 @@ void Pattern_Matching_Basic() {
 
     cout <<"Sample input generated. "<<endl<<endl;;
     
+    // Pre-encode matrix columns as plaintexts (once, before evaluation)
+    cout << "Pre-encoding matrix columns as plaintexts..." << endl;
+    vector<vector<Plaintext>> M_plaintext(matrix_num, vector<Plaintext>(pattern_num));
+    
+    for (int j = 0; j < matrix_num; ++j) {
+        for (int k = 0; k < pattern_num; ++k) {
+            vector<double> column_vec(slots, 0);
+            for (int idx = 0; idx < (int)slots; ++idx) {
+                column_vec[idx] = M[j][idx][k];
+            }
+            M_plaintext[j][k] = cc->MakeCKKSPackedPlaintext(column_vec);
+        }
+    }
+    
+    // Pre-encode masks as plaintexts
+    vector<Plaintext> masks(pattern_num);
+    for (int k = 0; k < pattern_num; ++k) {
+        vector<double> mask(slots, 0);
+        mask[k] = 1;
+        masks[k] = cc->MakeCKKSPackedPlaintext(mask);
+    }
+    
+    cout << "Matrix and mask pre-encoding complete." << endl << endl;
 
     // Inputs -> ciphertext
     //uint32_t encodedLength1 = input[0].size();
@@ -182,22 +205,15 @@ void Pattern_Matching_Basic() {
 
     // for each track
     for(int i = 0 ; i < block_num ; ++i){
-        //compute enc(v)*M
+        //compute enc(v)*M using pre-encoded plaintexts
         vector<Ciphertext<DCRTPoly>> output_LT(pattern_size);
         for (int j = 0 ; j < pattern_size ; ++j){
             for (int k = 0 ; k < pattern_num ; ++k){
-                vector<double> tmp_vec(slots,0);
-                for (int k2 = 0 ; k2 < (int)slots; ++k2){
-                    tmp_vec[k2] = M[j][k2][k];
-                }
-                // inner product between enc(v)*tmp_vec
-                Plaintext tmp_pt = cc->MakeCKKSPackedPlaintext(tmp_vec);
-                auto ip_result     = cc->EvalInnerProduct(ct[i+j], tmp_pt, batchSize);
-                //mask
-                vector<double> mask(slots,0);
-                mask[k] = 1;
-                Plaintext mask_pt = cc->MakeCKKSPackedPlaintext(tmp_vec);
-                auto ip_masked = cc->EvalMult(ip_result, mask_pt);
+                // Use pre-encoded matrix column plaintext (no encoding here!)
+                auto ip_result = cc->EvalInnerProduct(ct[i+j], M_plaintext[j][k], batchSize);
+                
+                // Use pre-encoded mask plaintext
+                auto ip_masked = cc->EvalMult(ip_result, masks[k]);
 
                 if(k == 0){
                     output_LT[j] = ip_masked;
@@ -205,7 +221,6 @@ void Pattern_Matching_Basic() {
                 else{
                     output_LT[j] = cc->EvalAdd(output_LT[j], ip_masked);
                 }
-
             }
         }
         cout <<"track id: "<<i <<", Enc(vec)*M finished. "<<endl;
